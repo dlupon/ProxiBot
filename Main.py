@@ -4,7 +4,6 @@
 import time
 import random
 
-from InputManager import InputManager as IP
+from Program import Program
 
-for i in range(25):
-    time.sleep(IP.MouseMove(random.randint(0, 1920), random.randint(0, 1080)))
+Program.Loop()

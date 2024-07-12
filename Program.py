@@ -18,7 +18,7 @@ class Program:
         while running:
             break
         
-        print("Dont !")
+        print("Done !")
         time.sleep(1)
 
     ################################### Init

@@ -10,13 +10,13 @@ class Program:
     
     ################################### VARIABLES
 
-    running : bool = true
+    running : bool = True
 
     ################################### Run
 
     def Run():
-        Init()
-        Loop()
+        Program.Init()
+        Program.Loop()
 
     def Init():
         pass
@@ -24,9 +24,7 @@ class Program:
     ################################### LOOP
     
     def Loop():
-        Init()
-
-        while running:
+        while Program.running:
             break
         
         print("Done !")

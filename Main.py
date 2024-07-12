@@ -5,5 +5,10 @@ import time
 import random
 
 from Program import Program
+from InputManager import InputManager
+import pyautogui
+import pyscreeze
 
-Program.Run()
+image = pyautogui.screenshot()
+x,y = pyautogui.locateCenterOnScreen("test.png", confidence = .5)
+InputManager.MouseMove(x, y)

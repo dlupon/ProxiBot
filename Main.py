@@ -6,4 +6,4 @@ import random
 
 from Program import Program
 
-Program.Loop()
+Program.Run()

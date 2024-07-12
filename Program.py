@@ -12,13 +12,22 @@ class Program:
 
     running : bool = true
 
+    ################################### Run
+
+    def Run():
+        Init()
+        Loop()
+
+    def Init():
+        pass
+
     ################################### LOOP
     
     def Loop():
+        Init()
+
         while running:
             break
         
         print("Done !")
         time.sleep(1)
-
-    ################################### Init

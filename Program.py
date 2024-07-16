@@ -19,24 +19,31 @@ class Program:
     # LOCALISATION
     CONFIDENCE : float = .7
 
-    ################################### Run
+    ################################### INIT
 
     def Run():
         Program.Init()
         Program.Loop()
+        Program.End()
 
     def Init():
         OP.InitMessage()
-        IP.AskForCommand(IP.commands)
 
     ################################### LOOP
     
     def Loop():
+        lInput : str = None
         while Program.running:
-            break
-        
-        OP.Out("Done !", Fore.GREEN)
-        time.sleep(1)
+            lInput = IP.AskForCommand(IP.commands)
+            OP.Clear()
+            Program.CheckForCommands(lInput)
+
+    ################################### COMMANDS
+
+    def CheckForCommands(pCommand : str):
+        if (pCommand == "exit"): Program.running = False
+        elif (pCommand == "help"): OP.Help()
+
 
     ################################### NAVIGATION
 
@@ -46,4 +53,8 @@ class Program:
         except: return None
         return lPoint
 
-    ################################### MESSAGE
+    ################################### END
+
+    def End():
+        OP.Out("Done !", Fore.GREEN)
+        time.sleep(1)

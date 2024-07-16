@@ -34,8 +34,8 @@ class Output:
         if pAddToHistory: Output.AddToHostory(lOutput)
         print(lOutput)
 
-    def Clear():
-        Message.lastOutput = ""
+    def Clear(pDeleteLastOutput = True):
+        if pDeleteLastOutput: Output.lastOutput = ""
         system("cls")
 
     def Jump(pJumpsCount : int = 1):
@@ -48,7 +48,7 @@ class Output:
         Output.allOutputs.append(pOutput)
 
     def ShowLastOutputs():
-        Output.Clear()
+        Output.Clear(False)
         print(Output.lastOutput[0 : len(Output.lastOutput) - 3])
 
     def ShowHisroty():
@@ -100,7 +100,7 @@ class Input:
     DEFAULT_USER_PREFIX : str = "User Input >  "
 
     # Commands
-    commands : dict = {"help" : ("Show this menu."),
+    commands : dict = {"help" : "Show this menu.",
                        "envoieEDC" : "Not available yes...",
                        "saisieCompteur" : "Not available yes...",
                        "saisieIndex" : "Not available yes...",
@@ -130,3 +130,4 @@ class Input:
                 Output.ShowLastOutputs()
                 lInput = None
         Output.Beep(Output.BEEP_GOOD)
+        return lInput

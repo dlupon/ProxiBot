@@ -1,60 +1,31 @@
 # autor : LUPON Dylan
-# date ; 07 / 12 / 2024
+# date : 07 / 12 / 2024
 
-import time
-import pyautogui
-from colorama import Fore, Back, Style
-from pyautogui import Point
+from App import *
+from IndexEntry import IndexEntry as IE
 
-from InputManager import InputManager as IPM
-from Console import Output as OP
-from Console import Input as IP
-
-class Program:
-    
+class Program(App):
     ################################### VARIABLES
 
-    running : bool = True
+    # MESSAGES
+    initMessage : str = "You are currently running nothing"
 
-    # LOCALISATION
-    CONFIDENCE : float = .7
+    # COMMANDS
+    commands : dict = {
+        "help" : "Show this menu.",
+        "envoieEDC" : "Not available yes...",
+        "saisieCompteur" : "Not available yes...",
+        "indexEntry" : "Work in progress...",
+        "stop" : "I think it stops the program ?"
+    }
 
-    ################################### INIT
+    ################################### MESSAGES
 
-    def Run():
-        Program.Init()
-        Program.Loop()
-        Program.End()
-
-    def Init():
-        OP.InitMessage()
-
-    ################################### LOOP
-    
-    def Loop():
-        lInput : str = None
-        while Program.running:
-            lInput = IP.AskForCommand(IP.commands)
-            OP.Clear()
-            Program.CheckForCommands(lInput)
+    def InitAction(): OP.InitMessage()
 
     ################################### COMMANDS
 
     def CheckForCommands(pCommand : str):
-        if (pCommand == "exit"): Program.running = False
-        elif (pCommand == "help"): OP.Help()
-
-
-    ################################### NAVIGATION
-
-    def Locate(pImage : str) -> Point | None:
-        lPoint : Point = None
-        try: lPoint = pyautogui.locateCenterOnScreen(pImage, confidence = Program.CONFIDENCE)
-        except: return None
-        return lPoint
-
-    ################################### END
-
-    def End():
-        OP.Out("Done !", Fore.GREEN)
-        time.sleep(1)
+        if (pCommand == "exit"): App.Stop()
+        elif (pCommand == "help"): OP.Help(App.commands)
+        elif (pCommand == "indexEntry"): IE.Run()

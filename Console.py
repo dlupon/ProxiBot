@@ -1,19 +1,17 @@
+# autor : LUPON Dylan
+# date : 07 / 13 / 2024
+
 import winsound
 import time
 import sys 
 from os import system
 from colorama import Fore, Back, Style
 
-class Message:
+class Output:
 
-    # init
     INIT : str = "#################################################################\n#                            PROXIBOT                           #\n#################################################################"
     CREDITS : str = "                                                        by dLupon"
     README : str = "What is ProxiBot :\n\rThe Job i was doing was really repetitive,\n\rso i decided to make a script to do it for me hehe."
-
-    # Configuration
-
-class Output:
 
     # Properties
     allOutputs : list = []
@@ -63,26 +61,21 @@ class Output:
         Output.Clear()
         Output.Copyright()
         Output.Jump(2)
-        Output.Out(Message.README)
-        Output.Help()
+        Output.Out(Output.README)
         
     def Copyright():
-        Output.Out(Message.INIT, Fore.GREEN)
-        Output.Out(Message.CREDITS, Fore.GREEN)
+        Output.Out(Output.INIT, Fore.GREEN)
+        Output.Out(Output.CREDITS, Fore.GREEN)
 
     ################################### HELP
 
-    def Help():
+    def Help(pCommand : list):
         Output.Jump()
-        Output.Out("Help Command", Output.HELP_COLOR)
+        Output.Out(f"Help :", Output.HELP_COLOR)
         Output.Jump()
-        for lKey in Input.commands:
-            Output.HelpOn(lKey)
+        for lCommandName in Input.commands:
+            Output.Out(f"{lCommandName} : {pCommand[lCommandName]}", Output.HELP_COLOR)
         Output.Jump()
-    
-    def HelpOn(pCommand : str):
-        if pCommand in Input.commands:
-            Output.Out(f"{pCommand} : {Input.commands[pCommand]}", Output.HELP_COLOR)
     
     ################################### SOUND
 
@@ -99,13 +92,6 @@ class Input:
     DEFAULT_QUESTION : str = "ENTER CMD"
     DEFAULT_USER_PREFIX : str = "User Input >  "
 
-    # Commands
-    commands : dict = {"help" : "Show this menu.",
-                       "envoieEDC" : "Not available yes...",
-                       "saisieCompteur" : "Not available yes...",
-                       "saisieIndex" : "Not available yes...",
-                       "exit" : "uh i think it closes the program ?"}
-
     ################################### SOUND
     
     def JustAsk(pQuestion : str = DEFAULT_QUESTION):
@@ -120,7 +106,7 @@ class Input:
         Input.JustAsk(pQuestion)
         return Input.JustAnswer(pUserPrefix)
 
-    def AskForCommand(pCommands : list = commands, pQuestion : str = DEFAULT_QUESTION, pUserPrefix : str = DEFAULT_USER_PREFIX) -> str:
+    def AskForCommand(pCommands : dict, pQuestion : str = DEFAULT_QUESTION, pUserPrefix : str = DEFAULT_USER_PREFIX) -> str:
         lInput = None
         Output.Beep(Output.BEEP_ASK)
         while lInput == None:

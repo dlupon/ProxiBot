@@ -1,5 +1,5 @@
 # autor : LUPON Dylan
-# date ; 07 / 08 / 2024
+# date : 07 / 08 / 2024
 
 class FileReader:
 

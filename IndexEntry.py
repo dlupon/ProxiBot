@@ -5,12 +5,13 @@ class IndexEntry(App):
 
     # MESSAGES
     initMessage : str = "You are currently running the Index Entry"
+    setupMessage : str = "WIP..."
 
     # COMMANDS
     commands : dict = {
-        "setup" : "...",
-        "start" : "...",
-        "stop" : "...",
+        "setup" : "WIP...",
+        "start" : "WIP...",
+        "stop" : "WIP...",
     }
 
     ################################### COMMANDS
@@ -20,6 +21,13 @@ class IndexEntry(App):
         elif (pCommand == "start") : pass
         elif (pCommand == "stop") : pass
 
-    def Setup(): pass
+    ################################### SETUP
+
+    def Setup():
+        IndexEntry.SetupMessage()
+
+    def SetupMessage() : OP.Out(IndexEntry.setupMessage)
+        
+    ################################### SETUP
 
     def Start(): pass

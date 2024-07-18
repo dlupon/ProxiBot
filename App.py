@@ -30,7 +30,7 @@ class App:
 
     ################################### MESSAGE
 
-    def InitMessage(): OP.Out(initMessage, Fore.CYAN)
+    def InitMessage(): OP.Out(App.initMessage, Fore.CYAN)
 
     ################################### INIT
 

@@ -37,6 +37,12 @@ class InputManager:
         for lClickIndex in range(pClickCount):
             pyautogui.click(button= pClickType)
 
+    ################################### MOUSE
+    
+    def KeyShortCut(*pKeys : str): pyautogui.shortcut(*pKeys)
+    
+    def KeyType(pInput : str): pyautogui.typewrite(pInput)
+
     ################################### UTILITIES
 
     def GetDistance(pPointA : Point, pPointB : Point) -> float:

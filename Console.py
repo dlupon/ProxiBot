@@ -35,6 +35,8 @@ class Output:
     def OutError(pMessage : str = ""): Output.Out(pMessage, Fore.RED)
 
     def OutInfo(pMessage : str = ""): Output.Out(pMessage, Fore.LIGHTBLACK_EX)
+    
+    def OutInstruction(pMessage : str = ""): Output.Out(pMessage, Fore.YELLOW)
 
     def Clear(pDeleteLastOutput = True):
         if pDeleteLastOutput: Output.lastOutput = ""

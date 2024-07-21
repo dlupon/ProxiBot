@@ -15,54 +15,47 @@ class App:
 
     ################################### VARIABLES
 
-    # MESSAGES
-    initMessage = ""
-
-    # PROPERTIES
-    running : bool = True
-
-    # LOCALISATION
     DEFAULT_CONFIDENCE : float = .7
-
-    # COMMANDS
-
-    commands : dict = None
 
     ################################### MESSAGE
 
-    def InitMessage(): OP.Out(App.initMessage, Fore.CYAN)
+    def LocationMessage(self): OP.OutInfo(self.locationMessage)
 
     ################################### INIT
 
-    def Run():
-        App.Init()
-        App.Loop()
-        App.End()
+    def __init__(self):
+        self.locationMessage : str = ""
+        self.commands : dict = None
+        self.running : bool = True
+        self.userPrefix = "App"
+        self.InitVariables()
+        self.InitAction()
+        self.LocationMessage()
 
-    def Init():
-        App.InitAction()
-        App.InitMessage()
+    def Run(self):
+        self.Loop()
+        self.End()
 
-    def InitAction() : pass
+    def InitVariables(self): pass
+        
+    def InitAction(self): pass
 
     ################################### LOOP
     
-    def Loop():
+    def Loop(self):
         lInput : str = None
-        while App.running:
-            lInput = IP.AskForCommand(App.commands)
+        while self.running:
+            lInput = IP.AskForCommand(self.commands, pUserPrefix = self.userPrefix)
             OP.Clear()
-            App.CheckForCommands(lInput)
+            self.CheckForCommands(lInput)
 
     ################################### COMMANDS
 
-    def CheckForCommands(pCommand : str):
-        pass
-
+    def CheckForCommands(self, pCommand : str): pass
 
     ################################### NAVIGATION
 
-    def Locate(pImage : str, pConfidence : float = App.DEFAULT_CONFIDENCE) -> Point | None:
+    def Locate(self, pImage : str, pConfidence : float = DEFAULT_CONFIDENCE) -> Point | None:
         lPoint : Point = None
         try: lPoint = pyautogui.locateCenterOnScreen(pImage, confidence = pConfidence)
         except: return None
@@ -70,8 +63,8 @@ class App:
 
     ################################### END
 
-    def Stop(): App.running = False
+    def Stop(self): self.running = False
 
-    def End():
+    def End(self):
         OP.Out("Done !", Fore.GREEN)
         time.sleep(1)

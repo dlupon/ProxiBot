@@ -1,33 +1,39 @@
 from App import *
 
 class IndexEntry(App):
-    ################################### VARIABLES
 
-    # MESSAGES
-    initMessage : str = "You are currently running the Index Entry"
-    setupMessage : str = "WIP..."
+    instance = None
 
-    # COMMANDS
-    commands : dict = {
+    ################################### INITIALIZATION
+
+    def MainLoop():
+        if (IndexEntry.instance == None): IndexEntry.instance = IndexEntry()
+        IndexEntry.instance.Run()
+
+    def InitVariables(self):
+        self.locationMessage : str = "You are currently running the Index Entry"
+        self.setupMessage : str = "WIP..."
+        self.userPrefix = "IndexEntry > "
+        self.commands : dict = {
         "setup" : "WIP...",
         "start" : "WIP...",
         "stop" : "WIP...",
-    }
+        }
 
     ################################### COMMANDS
 
-    def CheckForCommands(pCommand : str):
-        if (pCommand == "setup") : IndexEntry.Setup()
+    def CheckForCommands(self, pCommand : str):
+        if (pCommand == "setup") : self.Setup()
         elif (pCommand == "start") : pass
-        elif (pCommand == "stop") : pass
+        elif (pCommand == "stop") : self.Stop()
 
     ################################### SETUP
 
-    def Setup():
+    def Setup(self):
         IndexEntry.SetupMessage()
 
-    def SetupMessage() : OP.Out(IndexEntry.setupMessage)
+    def SetupMessage(self): OP.Out(IndexEntry.setupMessage)
         
     ################################### SETUP
 
-    def Start(): pass
+    def Start(self): pass

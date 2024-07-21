@@ -32,6 +32,10 @@ class Output:
         if pAddToHistory: Output.AddToHostory(lOutput)
         print(lOutput)
 
+    def OutError(pMessage : str = ""): Output.Out(pMessage, Fore.RED)
+
+    def OutInfo(pMessage : str = ""): Output.Out(pMessage, Fore.LIGHTBLACK_EX)
+
     def Clear(pDeleteLastOutput = True):
         if pDeleteLastOutput: Output.lastOutput = ""
         system("cls")
@@ -73,7 +77,7 @@ class Output:
         Output.Jump()
         Output.Out(f"Help :", Output.HELP_COLOR)
         Output.Jump()
-        for lCommandName in Input.commands:
+        for lCommandName in pCommand:
             Output.Out(f"{lCommandName} : {pCommand[lCommandName]}", Output.HELP_COLOR)
         Output.Jump()
     
